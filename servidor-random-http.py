@@ -16,7 +16,7 @@ import random
 
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 mySocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-mySocket.bind(("192.168.1.35", 7777))
+mySocket.bind((socket.gethostname(), 7777))
 mySocket.listen(5)
 
 try:
