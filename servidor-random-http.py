@@ -19,19 +19,20 @@ mySocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 mySocket.bind((socket.gethostname(), 7777))
 mySocket.listen(5)
 
+
 try:
     while True:
         print 'Waiting for connections'
         (recvSocket, address) = mySocket.accept()
-        x = random.randrange(10000000)
-        url = "http://localhost:1234/" + str(x)
+        x = random.randrange(10000)
+        url = "http://" + socket.gethostname() + ":7777/" + str(x)
         print 'Request received:'
         print recvSocket.recv(2048)
         print 'Answering back...'
         recvSocket.send("HTTP/1.1 200 OK\r\n\r\n" +
                         "<html><body><h1>Hola. </h1>" +
                         "</p>" +
-                        "<a href=" + url + " target=_blank>Dame otra"
+                        "<a href=" + url + ">Dame otra</a>"
                         "</body></html>" +
                         "\r\n")
         recvSocket.close()
